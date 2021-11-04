@@ -12,7 +12,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.6.0-pre.2",
+      "version": "1.6.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -37,7 +37,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
-      "version": "1.2.1",
+      "version": "1.2.4",
       "depth": 3,
       "source": "registry",
       "dependencies": {},
@@ -64,7 +64,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.4.8",
+      "version": "1.6.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
