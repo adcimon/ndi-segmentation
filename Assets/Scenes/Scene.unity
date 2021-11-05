@@ -467,10 +467,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStart: 0
   deviceName: 
-  width: 1280
-  height: 720
-  fps: 30
+  width: 0
+  height: 0
+  fps: 0
   screenRender: 1
+  horizontalFlip: 1
   verticalFlip: 0
   material: {fileID: 0}
   textureName: _MainTex
