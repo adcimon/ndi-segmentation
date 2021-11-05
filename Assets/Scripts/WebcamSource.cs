@@ -19,6 +19,7 @@ public class WebcamSource : MonoBehaviour
 
     [Header("Render")]
     public bool screenRender = true;
+    public bool horizontalFlip = false;
     public bool verticalFlip = false;
     public Material material;
     public string textureName = "_MainTex";
@@ -66,7 +67,7 @@ public class WebcamSource : MonoBehaviour
                 }
             }
 
-            Blit(webcamTexture, renderTexture, verticalFlip);
+            Blit(webcamTexture, renderTexture, horizontalFlip, verticalFlip);
         }
     }
 
@@ -89,16 +90,7 @@ public class WebcamSource : MonoBehaviour
         try
         {
             deviceName = IsWebcam(deviceName) ? deviceName : WebCamTexture.devices[0].name;
-
-            if( width <= 0 || height <= 0 || fps <= 0 )
-            {
-                webcamTexture = new WebCamTexture(deviceName);
-            }
-            else
-            {
-                webcamTexture = new WebCamTexture(deviceName, width, height, fps);
-            }
-
+            webcamTexture = new WebCamTexture(deviceName, width, height, fps);
             webcamTexture.Play();
 
             if( material )
@@ -137,7 +129,7 @@ public class WebcamSource : MonoBehaviour
     /// <summary>
     /// Blit a source texture into the destination render texture with aspect ratio compensation.
     /// </summary>
-    private void Blit( Texture source, RenderTexture destination, bool verticalFlip = false )
+    private void Blit( Texture source, RenderTexture destination, bool horizontalFlip = false, bool verticalFlip = false )
     {
         if( source == null || destination == null )
         {
@@ -149,7 +141,14 @@ public class WebcamSource : MonoBehaviour
 
         Vector2 scale = new Vector2(aspect2 / aspect1, aspect1 / aspect2);
         scale = Vector2.Min(Vector2.one, scale);
-        if( verticalFlip ) scale.y *= -1;
+        if( horizontalFlip )
+        {
+            scale.x *= -1;
+        }
+        if( verticalFlip )
+        {
+            scale.y *= -1;
+        }
 
         Vector2 offset = (Vector2.one - scale) / 2;
 
