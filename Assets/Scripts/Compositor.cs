@@ -42,6 +42,7 @@ public class Compositor : MonoBehaviour
         material.SetColor("_BackgroundColor", backgroundColor);
         material.SetTexture("_BackgroundTexture", backgroundImage);
 
+        RenderTexture.active = compositedTexture;
         Graphics.Blit(null, compositedTexture, material, (int)outputMode);
     }
 
