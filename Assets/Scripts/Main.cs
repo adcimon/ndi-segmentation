@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Klak.Ndi;
 
 public class Main : MonoBehaviour
 {
     public WebcamSource webcamSource;
     public Compositor compositor;
+    public NdiSender ndiSender;
     public Dropdown webcamDropdown;
     public Dropdown modeDropdown;
 
@@ -61,5 +63,10 @@ public class Main : MonoBehaviour
     {
         int index = dropdown.value;
         compositor.outputMode = (Compositor.OutputMode)index;
+    }
+
+    public void SetNdiTexture( RenderTexture renderTexture )
+    {
+        ndiSender.sourceTexture = renderTexture;
     }
 }

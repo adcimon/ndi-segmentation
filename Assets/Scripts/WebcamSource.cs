@@ -89,7 +89,16 @@ public class WebcamSource : MonoBehaviour
         try
         {
             deviceName = IsWebcam(deviceName) ? deviceName : WebCamTexture.devices[0].name;
-            webcamTexture = new WebCamTexture(deviceName, width, height, fps);
+
+            if( width <= 0 || height <= 0 || fps <= 0 )
+            {
+                webcamTexture = new WebCamTexture(deviceName);
+            }
+            else
+            {
+                webcamTexture = new WebCamTexture(deviceName, width, height, fps);
+            }
+
             webcamTexture.Play();
 
             if( material )
@@ -144,6 +153,7 @@ public class WebcamSource : MonoBehaviour
 
         Vector2 offset = (Vector2.one - scale) / 2;
 
+        RenderTexture.active = destination;
         Graphics.Blit(source, destination, scale, offset);
     }
 
